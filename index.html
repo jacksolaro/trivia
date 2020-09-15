@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- TODO: Update title -->
+    <title>Trivia Party</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -13,6 +14,28 @@
 
 <body>
     <h1>Welcome to Trivia Party!</h1>
+
+    <!-- Start Button -->
+    <button id="startBtn">START</button>
+    
+    <!-- TODO: update the timer -->
+    <div id="timer">100</div>
+
+    <!-- Display Trivia Questions and Answer Options -->
+    <div class="triviaSection">
+        <div class="questionContainer">
+            <h2 id="questionText">Question</h2>
+        </div>
+        <div class="answerContainer">
+            <ul class="answerOptions">
+                <button class="btn-grid">Answer 1</button>
+                <button class="btn-grid">Answer 2</button>
+                <button class="btn-grid">Answer 3</button>
+                <button class="btn-grid">Answer 4</button>
+            </ul>
+        </div>
+    </div>
+
 
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -27,3 +50,27 @@
 </body>
 
 </html>
+
+
+<!-- TODO LIST 
+1. HTML Elements
+--Start Button
+--timer
+--question area
+--answer area
+
+Clicking the start button begins timer
+
+First Set of Questions and Answers are displayed
+
+Selecting the correct answer goes to the next question
+
+Selecting the incorrect answer deducts time from timer and goes to next question
+
+Questions keep showing up until reach the end OR timer runs out
+
+When game is over, prompt user to enter initials and score is saved
+
+
+
+-->
