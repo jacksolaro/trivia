@@ -14,38 +14,51 @@
 
 <body>
     <main class="">
-        <!-- TODO: Vertical Center -->
+
+        <!-- TODO: Fix Nested containers issue -->
+        <!-- Game Container -->
         <div class="container mt-5">
+
+            <!-- Game Title Bar -->
             <div class="row d-flex justify-content-center">
                 <div class="col-md-2"></div>
                 <div class="col-md-8 d-flex justify-content-center">
-                    <h1>Welcome to Trivia Party!</h1>
+                    <h1 id="header1">Welcome to Trivia Party!</h1>
                 </div>
-                <div class="col-md-2"></div>
-            </div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-4 d-flex justify-content-center">
-                    <!-- Start Button -->
-                    <button id="startBtn">START</button>
-                </div>
-                <div class="col-md-4"></div>
-                <div class="col-md-4 d-flex justify-content-center">
+                <div class="col-md-2 d-flex justify-content-center">
                     <!-- TODO: update the timer -->
                     <p id="timer"></p>
                 </div>
             </div>
+
+            <!-- welcome section -->
+            <section class="container" id="welcome-section">
+                <h2>How to Play</h2>
+                <p>Once you click start, the timer will start and you will have a limited amount of time to answer XX trivia questions. When you get an answer wrong XX seconds will be deducted from your score. Your score will be however many seconds you have left at the end. Good luck! </p>
+                <!-- Start Button -->
+                <button id="startBtn">START</button>
+            </section>
+
             <!-- trivia section -->
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-12 d-flex justify-content-center">
-                    <h2 id="questionText">Question</h2>
+            <section class="container" id="trivia-section">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <h2 id="questionText">Question</h2>
+                    </div>
                 </div>
-            </div>
-            <div id="answer-grid" class="row d-flex justify-content-center">
-                <button id="answer1" class="answer-btn col-md-6">A</button>
-                <button id="answer2" class="answer-btn col-md-6">B</button>
-                <button id="answer3"  class="answer-btn col-md-6">C</button>
-                <button id="answer4" class="answer-btn col-md-6">D</button>
-            </div>
+                <div id="answer-grid" class="row d-flex justify-content-center">
+                    <button id="answer1" class="answer-btn col-md-6">A</button>
+                    <button id="answer2" class="answer-btn col-md-6">B</button>
+                    <button id="answer3"  class="answer-btn col-md-6">C</button>
+                    <button id="answer4" class="answer-btn col-md-6">D</button>
+                </div>
+            </section>
+
+            <!-- leaderboard section -->
+            <section class="container" id="leaderboard-section">
+                <h2>Leaderboard</h2>
+                <ol id="leaderboard-list"></ol>
+            </section>
         </div>
     </main>
 

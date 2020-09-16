@@ -9,6 +9,8 @@ var answerEl1 = $("#answer1");
 var answerEl2 = $("#answer2");
 var answerEl3 = $("#answer3");
 var answerEl4 = $("#answer4");
+var leaderboardEl = $("#leaderboard-list");
+var header1 = $("#header1");
 
 
 // ================================================
@@ -17,6 +19,8 @@ var answerEl4 = $("#answer4");
 
 var secondsLeft = 100;
 var questionIndex = 0;
+
+var storedScores = JSON.parse(localStorage.getItem('scores')) || [];
 
 // TODO: Create Question Content
 var questionList = [
@@ -59,10 +63,8 @@ timerEl.text(secondsLeft);
 // Start Game
 // TODO: At 10 seconds left, turn text red and bold
 startBtn.on("click", function() {
-    // Hide the Start Button
-    startBtn.css({'display':'none'});
-
-    // TODO: Hide the Starter Screen
+    // Hide the Welcome Section
+    $("#welcome-section").css({'display':'none'});
 
     // Display Questions
     generateQuestions();
@@ -76,8 +78,6 @@ startBtn.on("click", function() {
             // TODO: If time left is 0 OR there are no more questions
             if(secondsLeft <= 0 || questionIndex === questionList.length) {
                 clearInterval(gameTimer);
-                console.log("Game Over")
-                // TODO: Run gameOver()
                 gameOver();
             }
     
@@ -91,11 +91,9 @@ answerBtn.on("click", function(e) {
     
     // Check to see if the user selected the correct answer
     if(answerChoice.id === questionList[questionIndex].correctAns) {
-        // Correct Answer
-        console.log("it works so far")
+        // TODO: Correct Answer
     } else {
-        // Incorrect Answer
-        console.log("it works and you clicked a wrong answer")
+        // TODO: Incorrect Answer
         secondsLeft = secondsLeft - 15;
     }
     
@@ -122,14 +120,36 @@ function gameOver() {
     // TODO: Hide all question and answer elements
     
     // Prompt user for intials
-    prompt(`Great game! Your score is: ${secondsLeft}! Please enter your intials to save your score: `);
+    var userInits = prompt(`Great game! Your score is: ${secondsLeft}! Please enter your intials to save your score: `);
     
-    // Save score to local storage
-    
-    // Display leaderboard
+    // Create Object to Store Initials and Score
+    var userObj = {
+        userInits: userInits,
+        userScore: secondsLeft
+    }
 
+    // Push the Users score to the stored scores
+    storedScores.push(userObj);
+
+    // TODO: Save score to local storage
+    localStorage.setItem('scores',JSON.stringify(storedScores));
+
+    // TODO: Display leaderboard
+    displayLeaderboard();
 }
 
+function displayLeaderboard() {
+    // Update the high scores
+    var localStorageData = JSON.parse(localStorage.getItem("scores"))
+    
+    // TODO: Fix
 
+    localStorageData.forEach(function(userObj) {
+        var scoreLiEl = $("<li>");
+        console.log(scoreLiEl);
+        scoreLiEl.text(`${userObj.userInits} - ${userObj.userScore}`);
+        leaderboardEl.append(scoreLiEl);
+    })
 
-
+    //TODO: Display the leaderboard
+}
