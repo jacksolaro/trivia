@@ -13,30 +13,43 @@
 </head>
 
 <body>
-    <h1>Welcome to Trivia Party!</h1>
-
-    <!-- Start Button -->
-    <button id="startBtn">START</button>
-    
-    <!-- TODO: update the timer -->
-    <div id="timer">100</div>
-
-    <!-- Display Trivia Questions and Answer Options -->
-    <div class="triviaSection">
-        <div class="questionContainer">
-            <h2 id="questionText">Question</h2>
+    <main class="">
+        <!-- TODO: Vertical Center -->
+        <div class="container mt-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 d-flex justify-content-center">
+                    <h1>Welcome to Trivia Party!</h1>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-4 d-flex justify-content-center">
+                    <!-- Start Button -->
+                    <button id="startBtn">START</button>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <!-- TODO: update the timer -->
+                    <p id="timer"></p>
+                </div>
+            </div>
+            <!-- trivia section -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <h2 id="questionText">Question</h2>
+                </div>
+            </div>
+            <div id="answer-grid" class="row d-flex justify-content-center">
+                <button id="answer1" class="answer-btn col-md-6">A</button>
+                <button id="answer2" class="answer-btn col-md-6">B</button>
+                <button id="answer3"  class="answer-btn col-md-6">C</button>
+                <button id="answer4" class="answer-btn col-md-6">D</button>
+            </div>
         </div>
-        <div class="answerContainer">
-            <ul class="answerOptions">
-                <button class="btn-grid">Answer 1</button>
-                <button class="btn-grid">Answer 2</button>
-                <button class="btn-grid">Answer 3</button>
-                <button class="btn-grid">Answer 4</button>
-            </ul>
-        </div>
-    </div>
+    </main>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
