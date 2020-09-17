@@ -26,7 +26,7 @@ const wrongDeduction = 5;
 
 var storedScores = JSON.parse(localStorage.getItem('scores')) || [];
 
-// TODO: Create Question Content
+// Create Question Content
 var questionList = [
     {
         question: "Which singer’s real name is Stefani Joanne Angelina Germanotta?",
@@ -160,17 +160,17 @@ answerBtn.on("click", function(e) {
     
     // Check to see if the user selected the correct answer
     if(answerChoice.id === questionList[questionIndex].correctAns) {
-        // TODO: Correct Answer
+        // Correct Answer, sets background green then return to white
         triviaSection.css("background-color", "green");
         setTimeout(function() {
             triviaSection.css("background-color", "white");
-        }, 250)
+        }, 400)
     } else {
-        // TODO: Incorrect Answer
+        // Incorrect Answer, sets background red then return to white
         triviaSection.css("background-color", "red");
         setTimeout(function() {
             triviaSection.css("background-color", "white");
-        }, 250)
+        }, 400)
 
         // triviaSection.css("background-color", "white").delay(800);
         secondsLeft = secondsLeft - wrongDeduction;
@@ -200,7 +200,7 @@ function generateQuestions() {
 
 // Game Over Function
 function gameOver() {
-    // TODO: Hide all question and answer elements
+    //  Hide all question and answer elements
     triviaSection.addClass("d-none");
     leaderboardSection.removeClass("d-none")
 
@@ -216,10 +216,10 @@ function gameOver() {
     // Push the Users score to the stored scores
     storedScores.push(userObj);
 
-    // TODO: Save score to local storage
+    //  Save score to local storage
     localStorage.setItem('scores',JSON.stringify(storedScores));
 
-    // TODO: Display leaderboard
+    // Display leaderboard
     displayLeaderboard();
 }
 
