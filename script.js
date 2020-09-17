@@ -141,12 +141,14 @@ function gameOver() {
 function displayLeaderboard() {
     // Update the high scores
     var localStorageData = JSON.parse(localStorage.getItem("scores"))
-    
-    // TODO: Fix
+
+    console.log(localStorageData.sort((a,b) => (a.userScore > b.userScore) ? -1 : 1))
+    // var leaderboardScores = localStorageData.splice(0, 5);
+    localStorageData.splice(10)
+    // console.log(leaderboardScores);
 
     localStorageData.forEach(function(userObj) {
         var scoreLiEl = $("<li>");
-        console.log(scoreLiEl);
         scoreLiEl.text(`${userObj.userInits} - ${userObj.userScore}`);
         leaderboardEl.append(scoreLiEl);
     })
