@@ -2,7 +2,7 @@
 //  DOM ELEMENTS
 // ================================================
 var timerEl = $("#timer");
-var startBtn = $("#startBtn");
+var startBtn = $(".startBtn");
 var questionTextEl = $("#questionText");
 var answerBtn = $(".answer-btn");
 var answerEl1 = $("#answer1");
@@ -10,7 +10,9 @@ var answerEl2 = $("#answer2");
 var answerEl3 = $("#answer3");
 var answerEl4 = $("#answer4");
 var leaderboardEl = $("#leaderboard-list");
-var header1 = $("#header1");
+var welcomeSection = $("#welcome-section")
+var triviaSection = $("#trivia-section")
+var leaderboardSection = $("#leaderboard-section")
 
 
 // ================================================
@@ -63,14 +65,23 @@ timerEl.text(secondsLeft);
 // Start Game
 // TODO: At 10 seconds left, turn text red and bold
 startBtn.on("click", function() {
+    // Reset
+    questionIndex = 0;
+    secondsLeft = 100;
+
+    console.log("click")
+
     // Hide the Welcome Section
-    $("#welcome-section").css({'display':'none'});
+    welcomeSection.addClass("d-none");
+    triviaSection.removeClass("d-none")
+    leaderboardSection.addClass("d-none");
+
 
     // Display Questions
     generateQuestions();
 
     // Runs Timer, only if there isn't already a timer running
-    if(secondsLeft === 100 || secondsLeft <= 0){
+    if(secondsLeft === 100){
         var gameTimer = setInterval(() => {
             secondsLeft--;
             timerEl.text(`${secondsLeft}`);
@@ -118,7 +129,9 @@ function generateQuestions() {
 // Game Over Function
 function gameOver() {
     // TODO: Hide all question and answer elements
-    
+    triviaSection.addClass("d-none");
+    leaderboardSection.removeClass("d-none")
+
     // Prompt user for intials
     var userInits = prompt(`Great game! Your score is: ${secondsLeft}! Please enter your intials to save your score: `);
     
@@ -139,6 +152,9 @@ function gameOver() {
 }
 
 function displayLeaderboard() {
+    //empty old high scores
+    leaderboardEl.empty();
+
     // Update the high scores
     var localStorageData = JSON.parse(localStorage.getItem("scores"))
 
