@@ -1,14 +1,74 @@
-body, main {
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body, main {
     min-width: 100vw;
     min-height: 100vh;
+    display: flex;
+}
+
+body, main {
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    background-image: url("Assets/jason-leung-Xaanw0s0pMk-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+button {
+    background-color: #34113F;
+    border: 3px solid #34113F;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.answer-btn {
+    width: 90%;
+}
+
+button:hover {
+    background-color:  #714380;
+}
+
+.startBtn {
+    padding: 5px 40px;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
 }
 
 .container {
     border: 1px solid black;
-    margin: 20px auto;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.header-row {
+    background-color: #34113F;
+    color: white;
+    font-weight: bold;
 }
 
 #timer {
-    font-size: 40px;
+    font-size: 2em;
     font-weight: bold;
 }
+
+#trivia-section, #welcome-section, #leaderboard-section {
+    height: 55vh;
+}
+
+
+

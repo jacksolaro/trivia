@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- TODO: Update title -->
     <title>Trivia Party</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -15,51 +16,64 @@
 <body>
     <main class="">
 
-        <!-- TODO: Fix Nested containers issue -->
         <!-- Game Container -->
-        <div class="container mt-5">
+        <div class="container justify-content-center align-items-center" id="#game-container">
 
             <!-- Game Title Bar -->
-            <div class="row d-flex justify-content-center">
+            <div class="row header-row justify-content-center p-3">
                 <div class="col-md-2"></div>
-                <div class="col-md-8 d-flex justify-content-center">
-                    <h1 id="header1">Welcome to Trivia Party!</h1>
+                <div class="col-md-8 justify-content-center align-items-center">
+                    <h1 id="header1">Welcome to Trivia!</h1>
                 </div>
-                <div class="col-md-2 d-flex justify-content-center">
-                    <!-- TODO: update the timer -->
-                    <p id="timer"></p>
+                <div class="col-md-2 d-flex justify-content-center align-items-center">
+                    <p id="timer" class="d-none mb-0"></p>
                 </div>
             </div>
 
             <!-- welcome section -->
-            <section class="container" id="welcome-section">
-                <h2>How to Play</h2>
-                <p>Once you click start, the timer will start and you will have a limited amount of time to answer XX trivia questions. When you get an answer wrong XX seconds will be deducted from your score. Your score will be however many seconds you have left at the end. Good luck! </p>
-                <!-- Start Button -->
-                <button class="startBtn">START</button>
+            <section class="row pt-3" id="welcome-section">
+                <div class="col-md-12">
+                    <h2>How to Play</h2>
+                    <hr>
+                    <p>Once you click start, the timer will start and you will have a limited amount of time to answer 10 trivia questions. When you get an answer wrong, 5 seconds will be deducted from your score. Your score will be however many seconds you have left at the end. Good luck! </p>
+                    <!-- Start Button -->
+                    <button class="startBtn">START</button>
+                </div>
             </section>
 
             <!-- trivia section -->
-            <section class="container d-none" id="trivia-section">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-12 d-flex justify-content-center">
-                        <h2 id="questionText">Question</h2>
-                    </div>
+            <section class="row d-none align-items-center" id="trivia-section">
+                <div class="col-md-12 justify-content-center align-items-center">
+                    <h2 id="questionText">Question</h2>
+                    <hr>
                 </div>
-                <div id="answer-grid" class="row d-flex justify-content-center">
-                    <button id="answer1" class="answer-btn col-md-6">A</button>
-                    <button id="answer2" class="answer-btn col-md-6">B</button>
-                    <button id="answer3"  class="answer-btn col-md-6">C</button>
-                    <button id="answer4" class="answer-btn col-md-6">D</button>
+                <div class="col-md-6 col-sm-12 d-flex justify-content-center  align-items-center">
+                    <button id="answer1" class="answer-btn pt-md-5 pb-md-5 pt-sm-3 pb-sm-3">A</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center  align-items-center">
+                    <button id="answer2" class="answer-btn pt-md-5 pb-md-5 pt-sm-3 pb-sm-3">B</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center  align-items-center">
+                    <button id="answer3"  class="answer-btn pt-md-5 pb-md-5 pt-sm-3 pb-sm-3">C</button>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center  align-items-center">
+                    <button id="answer4" class="answer-btn pt-md-5 pb-md-5 pt-sm-3 pb-sm-3">D</button>
+                </div>
+                <!-- Question Counter -->
+                <div class="col-md-12 d-flex justify-content-center pb-2">
+                    <span class="" id="game-progress"></span>
                 </div>
             </section>
 
             <!-- leaderboard section -->
-            <section class="container d-none" id="leaderboard-section">
-                <h2>Leaderboard</h2>
-                <ol id="leaderboard-list"></ol>
-                <!-- Start Button -->
-                <button class="startBtn">PLAY AGAIN</button>
+            <section class="row d-none pt-3" id="leaderboard-section">
+                <div class="col-md-12">
+                    <h2>Leaderboard</h2>
+                    <hr>
+                    <ol id="leaderboard-list"></ol>
+                    <!-- Play Again Button -->
+                    <button class="startBtn">PLAY AGAIN</button>
+                </div>
             </section>
         </div>
     </main>
@@ -78,27 +92,5 @@
 </body>
 
 </html>
-
-
-<!-- TODO LIST 
-1. HTML Elements
---Start Button
---timer
---question area
---answer area
-
-Clicking the start button begins timer
-
-First Set of Questions and Answers are displayed
-
-Selecting the correct answer goes to the next question
-
-Selecting the incorrect answer deducts time from timer and goes to next question
-
-Questions keep showing up until reach the end OR timer runs out
-
-When game is over, prompt user to enter initials and score is saved
-
-
 
 -->

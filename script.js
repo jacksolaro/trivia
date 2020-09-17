@@ -13,6 +13,7 @@ var leaderboardEl = $("#leaderboard-list");
 var welcomeSection = $("#welcome-section")
 var triviaSection = $("#trivia-section")
 var leaderboardSection = $("#leaderboard-section")
+var gameProgressEl = $("#game-progress")
 
 
 // ================================================
@@ -21,6 +22,7 @@ var leaderboardSection = $("#leaderboard-section")
 
 var secondsLeft = 100;
 var questionIndex = 0;
+const wrongDeduction = 5;
 
 var storedScores = JSON.parse(localStorage.getItem('scores')) || [];
 
@@ -43,12 +45,68 @@ var questionList = [
         correctAns: "answer3"
     },
     {
-        question: "What is the tiny piece at the end of a shoelace called?",
-        answer1: "Aglet",
-        answer2: "Lace Fastener",
-        answer3: "Tiplet",
-        answer4: "Lace Tip",
+        question: "Which country produces the most coffee in the world?",
+        answer1: "Taiwan",
+        answer2: "United States",
+        answer3: "Peru",
+        answer4: "Brazil",
+        correctAns: "answer4"
+    },
+    {
+        question: "What is the most frequently sold item at Walmart?",
+        answer1: "Tennis Racket",
+        answer2: "Banana",
+        answer3: "Gum",
+        answer4: "Gift Cards",
+        correctAns: "answer2"
+    },
+    {
+        question: "What does Ph.D stand for?",
+        answer1: "Post Doctorate",
+        answer2: "Professional Doctor",
+        answer3: "Doctor of Philosphy",
+        answer4: "Professional Dentist",
+        correctAns: "answer3"
+    },
+    {
+        question: "What is the total number of dots on a pair of dice?",
+        answer1: "42",
+        answer2: "36",
+        answer3: "48",
+        answer4: "32",
         correctAns: "answer1"
+    },
+    {
+        question: "How long is New Zealand's Ninety Mile Beach?",
+        answer1: "75 miles",
+        answer2: "90 miles",
+        answer3: "99 miles",
+        answer4: "55 miles",
+        correctAns: "answer4"
+    },
+    {
+        question: "Among land animals, what species has the largest eyes?",
+        answer1: "Hippo",
+        answer2: "Giraffe",
+        answer3: "Ostrich",
+        answer4: "Elephant",
+        correctAns: "answer3"
+    },
+    {
+        question: "In what year did The Titanic sink?",
+        answer1: "1915",
+        answer2: "1930",
+        answer3: "1996",
+        answer4: "1912",
+        correctAns: "answer4"
+    },
+    {
+        question: "What is the sum of all the angles of a triangle?",
+        answer1: "360",
+        answer2: "270",
+        answer3: "180",
+        answer4: "90",
+        correctAns: "answer3"
     }
 ]
 
@@ -63,7 +121,6 @@ timerEl.text(secondsLeft);
 // ================================================
 
 // Start Game
-// TODO: At 10 seconds left, turn text red and bold
 startBtn.on("click", function() {
     // Reset
     questionIndex = 0;
@@ -71,10 +128,12 @@ startBtn.on("click", function() {
 
     console.log("click")
 
-    // Hide the Welcome Section
+    // Toggle Visibility
     welcomeSection.addClass("d-none");
-    triviaSection.removeClass("d-none")
     leaderboardSection.addClass("d-none");
+    gameProgressEl.removeClass("d-none");
+    triviaSection.removeClass("d-none")
+    timerEl.removeClass("d-none")
 
 
     // Display Questions
@@ -86,12 +145,11 @@ startBtn.on("click", function() {
             secondsLeft--;
             timerEl.text(`${secondsLeft}`);
     
-            // TODO: If time left is 0 OR there are no more questions
+            // If time left is 0 OR there are no more questions
             if(secondsLeft <= 0 || questionIndex === questionList.length) {
                 clearInterval(gameTimer);
                 gameOver();
             }
-    
         }, 1000)
     }
 })
@@ -103,9 +161,19 @@ answerBtn.on("click", function(e) {
     // Check to see if the user selected the correct answer
     if(answerChoice.id === questionList[questionIndex].correctAns) {
         // TODO: Correct Answer
+        triviaSection.css("background-color", "green");
+        setTimeout(function() {
+            triviaSection.css("background-color", "white");
+        }, 250)
     } else {
         // TODO: Incorrect Answer
-        secondsLeft = secondsLeft - 15;
+        triviaSection.css("background-color", "red");
+        setTimeout(function() {
+            triviaSection.css("background-color", "white");
+        }, 250)
+
+        // triviaSection.css("background-color", "white").delay(800);
+        secondsLeft = secondsLeft - wrongDeduction;
     }
     
     // increase the question index
@@ -117,13 +185,17 @@ answerBtn.on("click", function(e) {
     }
 })
 
-// Generate Questions
+// Generate Question using the Current Question Index
 function generateQuestions() {
+    // Update Questions
     questionTextEl.text(questionList[questionIndex].question);
     answerEl1.text(questionList[questionIndex].answer1);
     answerEl2.text(questionList[questionIndex].answer2);
     answerEl3.text(questionList[questionIndex].answer3);
     answerEl4.text(questionList[questionIndex].answer4);
+
+    // Update Question Tracker
+    gameProgressEl.text(`${questionIndex+1} / ${questionList.length}`)
 }
 
 // Game Over Function
@@ -158,16 +230,17 @@ function displayLeaderboard() {
     // Update the high scores
     var localStorageData = JSON.parse(localStorage.getItem("scores"))
 
+    // Sort the Leaderboard
     console.log(localStorageData.sort((a,b) => (a.userScore > b.userScore) ? -1 : 1))
-    // var leaderboardScores = localStorageData.splice(0, 5);
+    
+    // Grab the top 10 on the leaderboard
     localStorageData.splice(10)
-    // console.log(leaderboardScores);
 
+    // Build leaderboard
     localStorageData.forEach(function(userObj) {
         var scoreLiEl = $("<li>");
         scoreLiEl.text(`${userObj.userInits} - ${userObj.userScore}`);
         leaderboardEl.append(scoreLiEl);
     })
 
-    //TODO: Display the leaderboard
 }
